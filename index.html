@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NILUFER SHOES</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    /* ENCABEZADO MEJORADO */
+
+    header {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 38px 15px 34px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 4px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #d6d6d6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: #eeeeee;
+    }
+
+    #contadorCarrito {
+      background: #111;
+      color: white;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 4px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .producto-info {
+      padding: 18px;
+    }
+
+    .producto h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .precio {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      background: white;
+    }
+
+    .cantidad-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 14px;
+    }
+
+    .cantidad-control button {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .cantidad-numero {
+      font-size: 18px;
+      font-weight: bold;
+      min-width: 25px;
+      text-align: center;
+    }
+
+    .boton-agregar {
+      width: 100%;
+      padding: 13px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .boton-agregar:hover {
+      background: #333;
+    }
+
+    #pedido {
+      margin-top: 35px;
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    }
+
+    #pedido h2 {
+      margin-top: 0;
+    }
+
+    .item-pedido {
+      border-bottom: 1px solid #ddd;
+      padding: 12px 0;
+    }
+
+    .item-pedido:last-child {
+      border-bottom: none;
+    }
+
+    .item-nombre {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .item-detalle {
+      margin-top: 5px;
+      color: #555;
+    }
+
+    .pedido-controles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pedido-controles button {
+      border: none;
+      background: #ddd;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .boton-eliminar {
+      background: #d9534f !important;
+      color: white;
+      margin-left: 5px;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    /* DATOS DEL CLIENTE */
+
+    .datos-cliente {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .datos-cliente h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .boton-whatsapp {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #25D366;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sin-productos {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 32px 15px 28px;
+      }
+
+      header h1 {
+        font-size: 28px;
+        letter-spacing: 3px;
+      }
+
+      header p {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+      }
+
+      .productos {
+        grid-template-columns: 1fr;
+      }
+
+      .producto img {
+        height: 330px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>NILUFER SHOES</h1>
+  <p>COMPRAS POR WHATSAPP</p>
+</header>
+
+<nav>
+  <a href="#productos">PRODUCTOS</a>
+
+  <a href="#pedido">
+    🛒 MI PEDIDO
+    <span id="contadorCarrito">0</span>
+  </a>
+</nav>
+
+<main>
+
+  <section id="productos">
+    <div id="listaProductos" class="productos"></div>
+  </section>
+
+  <section id="pedido">
+
+    <h2>🛒 Mi pedido</h2>
+
+    <div id="listaPedido">
+      <p>Tu pedido está vacío.</p>
+    </div>
+
+    <div id="totalPedido" class="total">
+      Total: $0
+    </div>
+
+
+    <!-- DATOS DEL CLIENTE -->
+
+    <div class="datos-cliente">
+
+      <h3>Datos del pedido</h3>
+
+      <label for="nombreCliente">
+        Nombre
+      </label>
+
+      <input
+        type="text"
+        id="nombreCliente"
+        placeholder="Ingresá tu nombre"
+      >
+
+
+      <label for="domicilioCliente">
+        Domicilio
+      </label>
+
+      <input
+        type="text"
+        id="domicilioCliente"
+        placeholder="Ingresá tu domicilio"
+      >
+
+
+      <label for="formaPago">
+        Pago
+      </label>
+
+      <select id="formaPago">
+
+        <option value="">
+          Seleccioná una opción
+        </option>
+
+        <option value="Transferencia">
+          Transferencia
+        </option>
+
+        <option value="Efectivo">
+          Efectivo
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="boton-whatsapp"
+      onclick="enviarPedido()"
+    >
+      ENVIAR PEDIDO POR WHATSAPP
+    </button>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   ⭐⭐⭐ TABLA DE PRODUCTOS ⭐⭐⭐
+
+   ACÁ SOLAMENTE TENÉS QUE CARGAR LOS PRODUCTOS.
+
+   FORMATO:
+
+   Nombre | Precio | Talles | Foto
+   ========================================================= */
+
+const tablaProductos = `
+zapatillas urbanas | 22000 | 34 al 40 | foto1.jpeg
+zapatos de hombre | 21000 | 34 al 40 | foto2.jpeg
+zapatillas urbanas | 18000 | 34 al 40 | foto3.jpeg
+`;
+
+
+/* =========================================================
+   NO NECESITÁS MODIFICAR NADA DE ACÁ PARA ABAJO
+   ========================================================= */
+
+
+let productos = [];
+
+
+function convertirTablaEnProductos() {
+
+  const filas = tablaProductos
+    .trim()
+    .split("\n")
+    .map(fila => fila.trim())
+    .filter(fila => fila !== "");
+
+
+  productos = filas.map((fila, indice) => {
+
+    const partes =
+      fila.split("|").map(parte => parte.trim());
+
+
+    return {
+
+      id: indice + 1,
+
+      nombre: partes[0],
+
+      precio: Number(partes[1]),
+
+      talles: partes[2],
+
+      imagen: partes[3]
+
+    };
+
+  });
+
+}
+
+
+const cantidades = {};
+
+
+function prepararCantidades() {
+
+  productos.forEach(producto => {
+
+    cantidades[producto.id] = 1;
+
+  });
+
+}
+
+
+function mostrarProductos() {
+
+  const contenedor =
+    document.getElementById("listaProductos");
+
+
+  contenedor.innerHTML = "";
+
+
+  if (productos.length === 0) {
+
+    contenedor.innerHTML = `
+      <div class="sin-productos">
+        No hay productos cargados.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  productos.forEach(producto => {
+
+    const tarjeta =
+      document.createElement("div");
+
+
+    tarjeta.className = "producto";
+
+
+    tarjeta.innerHTML = `
+
+      <img
+        src="${producto.imagen}"
+        alt="${producto.nombre}"
+        onerror="this.style.display='none';"
+      >
+
+      <div class="producto-info">
+
+        <h2>${producto.nombre}</h2>
+
+        <div class="precio">
+          $${producto.precio.toLocaleString("es-AR")}
+        </div>
+
+        <label for="talle-${producto.id}">
+          Talle
+        </label>
+
+        <select id="talle-${producto.id}">
+          ${crearOpcionesTalle(producto.talles)}
+        </select>
+
+        <div class="cantidad-control">
+
+          <button
+            onclick="cambiarCantidad(${producto.id}, -1)"
+          >
+            −
+          </button>
+
+          <span
+            id="cantidad-${producto.id}"
+            class="cantidad-numero"
+          >
+            1
+          </span>
+
+          <button
+            onclick="cambiarCantidad(${producto.id}, 1)"
+          >
+            +
+          </button>
+
+        </div>
+
+        <button
+          class="boton-agregar"
+          onclick="agregarAlPedido(${producto.id})"
+        >
+          AGREGAR AL PEDIDO
+        </button>
+
+      </div>
+
+    `;
+
+
+    contenedor.appendChild(tarjeta);
+
+  });
+
+}
+
+
+function crearOpcionesTalle(talles) {
+
+  const partes = talles
+    .toLowerCase()
+    .replace(/ /g, "")
+    .split("al");
+
+
+  if (
+    partes.length === 2 &&
+    !isNaN(partes[0]) &&
+    !isNaN(partes[1])
+  ) {
+
+    const desde = Number(partes[0]);
+
+    const hasta = Number(partes[1]);
+
+    let opciones = "";
+
+
+    for (
+      let i = desde;
+      i <= hasta;
+      i++
+    ) {
+
+      opciones +=
+        `<option value="${i}">${i}</option>`;
+
+    }
+
+
+    return opciones;
+
+  }
+
+
+  const lista = talles.split(",");
+
+
+  return lista
+    .map(talle => {
+
+      const valor = talle.trim();
+
+
+      return `
+        <option value="${valor}">
+          ${valor}
+        </option>
+      `;
+
+    })
+    .join("");
+
+}
+
+
+function cambiarCantidad(id, cambio) {
+
+  cantidades[id] += cambio;
+
+
+  if (cantidades[id] < 1) {
+
+    cantidades[id] = 1;
+
+  }
+
+
+  document.getElementById(
+    `cantidad-${id}`
+  ).textContent = cantidades[id];
+
+}
+
+
+let pedido = [];
+
+
+function agregarAlPedido(id) {
+
+  const producto =
+    productos.find(
+      producto => producto.id === id
+    );
+
+
+  const talle =
+    document.getElementById(
+      `talle-${id}`
+    ).value;
+
+
+  const cantidad =
+    cantidades[id];
+
+
+  const existente =
+    pedido.find(item =>
+      item.id === id &&
+      item.talle === talle
+    );
+
+
+  if (existente) {
+
+    existente.cantidad += cantidad;
+
+  } else {
+
+    pedido.push({
+
+      id: id,
+
+      nombre: producto.nombre,
+
+      precio: producto.precio,
+
+      talle: talle,
+
+      cantidad: cantidad
+
+    });
+
+  }
+
+
+  cantidades[id] = 1;
+
+
+  document.getElementById(
+    `cantidad-${id}`
+  ).textContent = 1;
+
+
+  mostrarPedido();
+
+  actualizarContadorCarrito();
+
+}
+
+
+function mostrarPedido() {
+
+  const contenedor =
+    document.getElementById("listaPedido");
+
+
+  const totalElemento =
+    document.getElementById("totalPedido");
+
+
+  if (pedido.length === 0) {
+
+    contenedor.innerHTML =
+      "<p>Tu pedido está vacío.</p>";
+
+
+    totalElemento.textContent =
+      "Total: $0";
+
+
+    return;
+
+  }
+
+
+  contenedor.innerHTML = "";
+
+
+  let total = 0;
+
+
+  pedido.forEach((item, indice) => {
+
+    const subtotal =
+      item.precio * item.cantidad;
+
+
+    total += subtotal;
+
+
+    const div =
+      document.createElement("div");
+
+
+    div.className = "item-pedido";
+
+
+    div.innerHTML = `
+
+      <div class="item-nombre">
+        ${item.nombre}
+      </div>
+
+      <div class="item-detalle">
+        Talle: ${item.talle}
+        <br>
+        Precio: $${item.precio.toLocaleString("es-AR")}
+      </div>
+
+      <div class="pedido-controles">
+
+        <button
+          onclick="cambiarCantidadPedido(${indice}, -1)"
+        >
+          −
+        </button>
+
+        <strong>
+          ${item.cantidad}
+        </strong>
+
+        <button
+          onclick="cambiarCantidadPedido(${indice}, 1)"
+        >
+          +
+        </button>
+
+        <button
+          class="boton-eliminar"
+          onclick="eliminarDelPedido(${indice})"
+        >
+          ✕
+        </button>
+
+      </div>
+
+      <div>
+
+        Subtotal:
+
+        <strong>
+          $${subtotal.toLocaleString("es-AR")}
+        </strong>
+
+      </div>
+
+    `;
+
+
+    contenedor.appendChild(div);
+
+  });
+
+
+  totalElemento.textContent =
+    `Total: $${total.toLocaleString("es-AR")}`;
+
+}
+
+
+function cambiarCantidadPedido(indice, cambio) {
+
+  pedido[indice].cantidad += cambio;
+
+
+  if (pedido[indice].cantidad <= 0) {
+
+    pedido.splice(indice, 1);
+
+  }
+
+
+  mostrarPedido();
+
+  actualizarContadorCarrito();
+
+}
+
+
+function eliminarDelPedido(indice) {
+
+  pedido.splice(indice, 1);
+
+  mostrarPedido();
+
+  actualizarContadorCarrito();
+
+}
+
+
+function actualizarContadorCarrito() {
+
+  const contador =
+    document.getElementById(
+      "contadorCarrito"
+    );
+
+
+  const cantidadTotal =
+    pedido.reduce(
+      (total, item) =>
+        total + item.cantidad,
+      0
+    );
+
+
+  contador.textContent =
+    cantidadTotal;
+
+}
+
+
+/* =========================================================
+   ENVIAR PEDIDO POR WHATSAPP
+   ========================================================= */
+
+function enviarPedido() {
+
+  if (pedido.length === 0) {
+
+    alert(
+      "Primero agregá algún producto al pedido."
+    );
+
+    return;
+
+  }
+
+
+  const nombre =
+    document.getElementById(
+      "nombreCliente"
+    ).value.trim();
+
+
+  const domicilio =
+    document.getElementById(
+      "domicilioCliente"
+    ).value.trim();
+
+
+  const pago =
+    document.getElementById(
+      "formaPago"
+    ).value;
+
+
+  if (!nombre) {
+
+    alert(
+      "Por favor ingresá tu nombre."
+    );
+
+    return;
+
+  }
+
+
+  if (!domicilio) {
+
+    alert(
+      "Por favor ingresá tu domicilio."
+    );
+
+    return;
+
+  }
+
+
+  if (!pago) {
+
+    alert(
+      "Por favor seleccioná la forma de pago."
+    );
+
+    return;
+
+  }
+
+
+  let mensaje =
+    "Hola! Quiero hacer el siguiente pedido:%0A%0A";
+
+
+  let total = 0;
+
+
+  pedido.forEach(item => {
+
+    const subtotal =
+      item.precio * item.cantidad;
+
+
+    total += subtotal;
+
+
+    mensaje +=
+      `• ${item.nombre}%0A` +
+      `  Talle: ${item.talle}%0A` +
+      `  Cantidad: ${item.cantidad}%0A` +
+      `  Precio: $${item.precio.toLocaleString("es-AR")}%0A` +
+      `  Subtotal: $${subtotal.toLocaleString("es-AR")}%0A%0A`;
+
+  });
+
+
+  mensaje +=
+    `──────────────%0A%0A`;
+
+
+  mensaje +=
+    `TOTAL: $${total.toLocaleString("es-AR")}%0A%0A`;
+
+
+  mensaje +=
+    `Nombre: ${nombre}%0A`;
+
+
+  mensaje +=
+    `Domicilio: ${domicilio}%0A`;
+
+
+  mensaje +=
+    `Pago: ${pago}`;
+
+
+  /*
+     ⚠️ ESTE NÚMERO ES PROVISORIO.
+     Más adelante ponemos el WhatsApp real.
+  */
+
+  const numeroWhatsApp =
+    "543794181097";
+
+
+  const url =
+    `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+
+  window.open(url, "_blank");
+
+}
+
+
+/* =========================================================
+   INICIAR LA PÁGINA
+   ========================================================= */
+
+convertirTablaEnProductos();
+
+prepararCantidades();
+
+mostrarProductos();
+
+mostrarPedido();
+
+actualizarContadorCarrito();
+
+</script>
+
+</body>
+</html>
